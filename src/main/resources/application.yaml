@@ -1,0 +1,33 @@
+server:
+  port: 9000
+
+
+spring:
+  web:
+    resources:
+#      静态资源映射到本地文件
+      static-locations: file:F:\学习\videoapp\src\main\resources\static
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/projectpractice3?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: lzy3122588
+  servlet:
+    multipart:
+      max-file-size: 64000MB
+      max-request-size: 6400MB
+  jpa:
+    show-sql: true
+    #    展示SQL代码到控制台上
+    properties:
+      hibernate:
+        format_sql: true
+  #        格式化SQL代码在控制台上的显示
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.demo.model
+
+
+
