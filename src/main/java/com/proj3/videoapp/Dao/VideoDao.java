@@ -4,12 +4,14 @@ import com.proj3.videoapp.entity.preUploadVideo;
 import com.proj3.videoapp.entity.video;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
+@Repository
 @Component
 public interface VideoDao {
     //查询从第几条开始后面size条数据
@@ -46,4 +48,5 @@ public interface VideoDao {
     @Select({"${sql}"})
     public List<video> getVideoList(@Param("sql") String sql);
 
+//    public Page<video> videoPaginatedQueries(String sql);
 }

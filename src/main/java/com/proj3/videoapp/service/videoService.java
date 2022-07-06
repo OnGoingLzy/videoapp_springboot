@@ -29,4 +29,6 @@ public interface videoService {
 
     List<video> getVideoWithAuthor(String authorid);
 
+//    Page<video> mybatisPaginatedQueries(String currentPage,String sql);
+
 }

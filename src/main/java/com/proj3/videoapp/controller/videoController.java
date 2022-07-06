@@ -105,6 +105,8 @@ public class videoController {
         String resultSql = "select * from ("+tagSql+") as table1 " + searchSql;
         System.out.println(resultSql);
         List<video> videoList = videoService.videoCTList(currentPage,resultSql);
+        //测试mybatis分页
+//        videoService.mybatisPaginatedQueries(currentPage,resultSql);
         return videoList;
     }
     //获取搜索框的内容，并把它处理成sql语句

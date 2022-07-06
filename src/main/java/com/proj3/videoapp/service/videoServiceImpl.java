@@ -3,6 +3,7 @@ package com.proj3.videoapp.service;
 import com.proj3.videoapp.Dao.VideoDao;
 import com.proj3.videoapp.entity.video;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -81,4 +82,18 @@ public class videoServiceImpl implements videoService{
 
         return videoDao.getVideoList(sql);
     }
+
+//    @Override
+//    public Page<video> mybatisPaginatedQueries(String currentPage, String sql) {
+//        PageHelper.startPage(Integer.parseInt(currentPage),4);
+//        Page<video> page = videoDao.videoPaginatedQueries(sql);
+//        System.out.println("总页数："+page.getPages());
+//        System.out.println("总记录数："+page.getTotal());
+//        System.out.println("开始行号："+page.getStartRow());
+//        System.out.println("结束行号："+page.getEndRow());
+//        System.out.println("当前页码："+page.getPageNum());
+//        List<video> data = page.getResult();  // 获取当前页数据
+//
+//        return null;
+//    }
 }

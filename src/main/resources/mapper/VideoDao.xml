@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.proj3.videoapp.Dao.VideoDao" >
+    <select id="videoPaginatedQueries" resultType="com.proj3.videoapp.entity.video">
+--      INSERT INTO poetry(verse,author ) VALUES (#{verse},#{author})
+     {select * from (${sql}) as table2}
+     </select>
+</mapper>
