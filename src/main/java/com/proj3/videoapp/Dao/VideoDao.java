@@ -45,6 +45,7 @@ public interface VideoDao {
     @Select({"${sql}"})
     public video getVideo(@Param("sql") String sql);
 
+
     @Select({"${sql}"})
     public List<video> getVideoList(@Param("sql") String sql);
 
