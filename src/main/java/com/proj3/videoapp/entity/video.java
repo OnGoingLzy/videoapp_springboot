@@ -13,6 +13,7 @@ public class video {
     private Integer likescount;
     private Integer status;
     private String createtime;
+    private String tag;
     private String category;
     private String description;
 

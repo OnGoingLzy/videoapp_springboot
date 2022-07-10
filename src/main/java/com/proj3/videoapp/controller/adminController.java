@@ -33,4 +33,11 @@ public class adminController {
         }
         return List;
     }
+    @RequestMapping("passVideoAudit")
+    public Boolean passVideoAudit(@RequestParam("videoid") String videoid){
+
+        return false;
+    }
+
 }
+
