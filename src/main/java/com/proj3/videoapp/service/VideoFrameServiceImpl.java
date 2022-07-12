@@ -2,8 +2,12 @@ package com.proj3.videoapp.service;
 
 import com.proj3.videoapp.Dao.VideoDao;
 import com.proj3.videoapp.Dao.VideoFrameDao;
+import com.proj3.videoapp.entity.comment;
+import com.proj3.videoapp.entity.userAndComment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service(value = "VideoFrameService")
 public class VideoFrameServiceImpl implements VideoFrameService{
@@ -41,12 +45,25 @@ public class VideoFrameServiceImpl implements VideoFrameService{
     @Override
     public Boolean checkBeCollected(String videoid, String cid) {
         String sql = "select * from allbecollected where collectedvideoid = '"+videoid+"' and folderid in (select ffolderid from favorfolder where ownerid = '"+cid+"')";
-        System.out.println(sql);
         int size = videoFrameDao.checkBeCollectedSql(sql).size();
-        System.out.println(size);
         if(size<1){
             return false;
         }else return true;
 
+    }
+
+    @Override
+    public List<comment> getVideoComment(String videoid) {
+        String sql="select * from comments where videoid = " + videoid;
+        List<comment> comment= videoFrameDao.getComment(sql);
+        return comment;
+    }
+
+    @Override
+    public List<comment> getCommentReply(String videoid, String tocid) {
+        String sql="select * from comments where videoid = " + videoid + " and tocid = "+tocid;
+        List<comment> comment= videoFrameDao.getComment(sql);
+        if (comment.size()==0)return null;
+        return comment;
     }
 }

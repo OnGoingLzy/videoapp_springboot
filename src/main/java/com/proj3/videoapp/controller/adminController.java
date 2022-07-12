@@ -35,8 +35,7 @@ public class adminController {
     }
     @RequestMapping("passVideoAudit")
     public Boolean passVideoAudit(@RequestParam("videoid") String videoid){
-
-        return false;
+        return adminService.passVideoAudit(videoid);
     }
 
 }

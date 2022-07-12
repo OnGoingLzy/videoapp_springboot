@@ -1,5 +1,6 @@
 package com.proj3.videoapp.Dao;
 
+import com.proj3.videoapp.entity.comment;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -16,5 +17,7 @@ public interface VideoFrameDao {
     public Boolean insertSql(@Param("sql") String sql);
     @Delete({"${sql}"})
     public Boolean deleteSql(@Param("sql") String sql);
+    @Select({"${sql}"})
+    public List<comment> getComment(@Param("sql") String sql);
 
 }

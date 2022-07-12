@@ -8,4 +8,5 @@ import java.util.List;
 @Service
 public interface adminService {
     public List<video> getAuditVideo();
+    public Boolean passVideoAudit(String videoid);
 }

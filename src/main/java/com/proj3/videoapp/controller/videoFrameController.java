@@ -1,8 +1,12 @@
 package com.proj3.videoapp.controller;
 
+import com.proj3.videoapp.entity.comment;
+import com.proj3.videoapp.entity.userAndComment;
 import com.proj3.videoapp.service.VideoFrameService;
 import com.proj3.videoapp.service.VideoFrameServiceImpl;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -37,6 +41,14 @@ public class videoFrameController {
     public Boolean shoucangVideo(@RequestParam("videoid")String videoid,@RequestParam("folderid") String folderid){
         return videoFrameService.shoucangVideo(videoid,folderid);
     }
-
+    @RequestMapping("getVideoComment")
+    public List<comment> getVideoComment(@RequestParam("videoid") String videoid){
+        return videoFrameService.getVideoComment(videoid);
+    }
+    //查找评论的评论or回复
+    @RequestMapping("getCommentReply")
+    public List<comment> getCommentReply(@RequestParam("videoid") String videoid,@RequestParam("tocid") String tocid){
+        return videoFrameService.getCommentReply(videoid,tocid);
+    }
 
 }
