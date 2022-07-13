@@ -16,4 +16,6 @@ public interface VideoFrameService {
     public List<comment> getVideoComment(String videoid);
 
     List<comment> getCommentReply(String videoid, String tocid);
+
+    Boolean submitComment(comment comment);
 }

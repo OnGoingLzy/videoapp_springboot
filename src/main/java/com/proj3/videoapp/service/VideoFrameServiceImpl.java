@@ -17,7 +17,6 @@ public class VideoFrameServiceImpl implements VideoFrameService{
     @Override
     public Boolean checkBeLike(String cid, String videoid) {
         String sql = "select * from belikesvideo where cid = '"+cid+"' and videoid = '"+videoid+"'";
-        System.out.println(sql);
         if(videoFrameDao.checkSql(sql)==null){
             return false;
         }else return true;
@@ -65,5 +64,11 @@ public class VideoFrameServiceImpl implements VideoFrameService{
         List<comment> comment= videoFrameDao.getComment(sql);
         if (comment.size()==0)return null;
         return comment;
+    }
+
+    @Override
+    public Boolean submitComment(comment comment) {
+        String sql = "insert into comments(videoid,cid,content,tocid,date) values("+comment.getVideoid()+","+comment.getCid()+",'"+comment.getContent()+"',"+comment.getTocid()+",now()) ";
+        return videoFrameDao.insertSql(sql);
     }
 }

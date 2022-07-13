@@ -50,5 +50,16 @@ public class videoFrameController {
     public List<comment> getCommentReply(@RequestParam("videoid") String videoid,@RequestParam("tocid") String tocid){
         return videoFrameService.getCommentReply(videoid,tocid);
     }
+    //保存评论
+    @RequestMapping("submitComment")
+    public Boolean submitComment(@RequestParam("content") String content,
+                                 @RequestParam("videoid")String videoid,
+                                 @RequestParam("tocid")String tocid,
+                                 @RequestParam("cid")String cid){
+        comment comment = new comment(videoid,cid,content,tocid);
+
+        return videoFrameService.submitComment(comment);
+
+    }
 
 }
