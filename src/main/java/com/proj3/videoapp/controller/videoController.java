@@ -52,7 +52,7 @@ public class videoController {
     //有标签，分类的视频总数量
     @RequestMapping("/getAllCount2")
     public Integer getallcount2(@RequestBody Map<String,Object> param){
-        String currentPage = (String) param.get("cpage");
+//        String currentPage = (String) param.get("cpage");
         String category = (String) param.get("category");
         ArrayList tag = (ArrayList) param.get("tag");
         String searchSql = (String) param.get("searchSql");
@@ -92,7 +92,7 @@ public class videoController {
         ArrayList tag = (ArrayList) param.get("tag");
         String searchSql = (String) param.get("searchSql");
         if(searchSql == null)searchSql="";
-        System.out.println("searchSql: "+searchSql);
+//        System.out.println("searchSql: "+searchSql);
         String tagSql="";
         if(category.equals("默认")){
             tagSql = "select * from video where tag LIKE '%默认%' and status=2 ";
@@ -103,8 +103,8 @@ public class videoController {
         }
 
         String resultSql = "select * from ("+tagSql+") as table1 " + searchSql;
-        System.out.println(resultSql);
         List<video> videoList = videoService.videoCTList(currentPage,resultSql);
+        
         //测试mybatis分页
 //        videoService.mybatisPaginatedQueries(currentPage,resultSql);
         return videoList;

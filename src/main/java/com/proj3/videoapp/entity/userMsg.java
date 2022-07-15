@@ -10,5 +10,4 @@ public class userMsg {
     private String cname;
     private String introduction;
 
-
 }
