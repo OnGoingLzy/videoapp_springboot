@@ -14,8 +14,16 @@ public interface VideoFrameService {
     public Boolean shoucangVideo(String videoid,String folderid);
     public Boolean checkBeCollected(String videoid,String cid);
     public List<comment> getVideoComment(String videoid);
-
-    List<comment> getCommentReply(String videoid, String tocid);
+    //List<comment> getCommentReply(String videoid, String tocid);错误的查询，修改成以父评论id查询子评论
+    List<comment> getCommentReply(String videoid, String toCommentid);
 
     Boolean submitComment(comment comment);
+
+    Boolean checkBeLikeComment(String cid, String commentid);
+
+    Boolean addBeLikeComment(String cid, String commentid);
+
+    Boolean deleteBeLikeComment(String cid, String commentid);
+
+    Boolean deleteComment(String commentid,String videoid,String cid);
 }

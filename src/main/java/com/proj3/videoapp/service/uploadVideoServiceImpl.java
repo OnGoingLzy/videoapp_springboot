@@ -49,14 +49,12 @@ public class uploadVideoServiceImpl implements uploadVideoService{
         String videoSize = (String) param.get("videoSize");
         String sql = "insert into preuploadvideo (cid,videourl,uploadstate,videosize) values("+cid+",'"+videourl+"','true','"+videoSize+"')";
         Boolean saveResult =  videoDao.InsertSql(sql);
-        System.out.println("保存"+saveResult);
         return saveResult;
     }
 
     @Override
     public preUploadVideo getPreUploadMsg(String cid) {
         String sql = "select * from preuploadvideo where cid = '" + cid + "'";
-        System.out.println("是否有正在投稿的视频"+videoDao.selectPreUploadVideo(sql));
         return videoDao.selectPreUploadVideo(sql);
     }
 
@@ -64,16 +62,13 @@ public class uploadVideoServiceImpl implements uploadVideoService{
     public Boolean submitVideo(preVideo preVideo) throws IOException {
 
         String videoPath = preVideo.getVideoPath();
-        System.out.println(videoPath);
         String path =  videoPath.replace("http://localhost:9000/video/","F:/学习/videoapp/src/main/resources/static/video/");
         long videoseconds =  VideoUtil.getMp4Duration(path);
-        System.out.println(preVideo.getTagResult());
         String coverpath="defaultCover2.png";
         if(!preVideo.getCoverImg().getOriginalFilename().equals("defaultCover2.png")){
             coverpath = saveAndGetVideoCoverImgName(preVideo.getCoverImg());
         }
         String sql = "insert into video (authorid,videoname,videopath,videoseconds,status,createtime,tag,category,description,coverpath) values("+preVideo.getCid()+",'"+preVideo.getVideoname()+"','"+videoPath+"',"+videoseconds+",1,CURRENT_TIMESTAMP,'"+preVideo.getTagResult()+"','"+preVideo.getCategory()+"','"+preVideo.getDescription()+"','"+coverpath+"')";
-        System.out.println(sql);
         Boolean result =  videoDao.InsertSql(sql);
         //删除prevideo表中数据
         sql = "delete from preuploadvideo where cid = '"+preVideo.getCid()+"'";

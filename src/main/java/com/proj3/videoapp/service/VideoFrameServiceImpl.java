@@ -34,6 +34,34 @@ public class VideoFrameServiceImpl implements VideoFrameService{
 
         return videoFrameDao.deleteSql(sql);
     }
+    @Override
+    public Boolean checkBeLikeComment(String cid, String commentid) {
+        String sql = "select * from belikecomment where cid = '"+cid+"' and commentid = '"+commentid+"'";
+        if(videoFrameDao.checkSql(sql)==null){
+            return false;
+        }else return true;
+    }
+
+    @Override
+    public Boolean addBeLikeComment(String cid, String commentid) {
+        String sql = "insert into belikecomment(cid,commentid) values("+cid+","+commentid+")";
+
+        return videoFrameDao.insertSql(sql);
+    }
+
+    @Override
+    public Boolean deleteBeLikeComment(String cid, String commentid) {
+        String sql = "delete from belikecomment where cid = "+cid+" and commentid = "+commentid;
+
+        return videoFrameDao.deleteSql(sql);
+    }
+
+    @Override
+    public Boolean deleteComment(String commentid,String videoid,String cid) {
+        //数据库外键约束，当root评论删除后子评论也删除
+        String sql = "delete from comments where commentid = "+commentid;
+        return videoFrameDao.deleteSql(sql);
+    }
 
     @Override
     public Boolean shoucangVideo(String videoid, String folderid) {
@@ -53,14 +81,14 @@ public class VideoFrameServiceImpl implements VideoFrameService{
 
     @Override
     public List<comment> getVideoComment(String videoid) {
-        String sql="select * from comments where videoid = " + videoid;
+        String sql="select * from comments where videoid = " + videoid + " and tocommentid is NULL";
         List<comment> comment= videoFrameDao.getComment(sql);
         return comment;
     }
 
     @Override
-    public List<comment> getCommentReply(String videoid, String tocid) {
-        String sql="select * from comments where videoid = " + videoid + " and tocid = "+tocid;
+    public List<comment> getCommentReply(String videoid, String toCommentid) {
+        String sql="select * from comments where videoid = " + videoid + " and tocommentid = "+toCommentid;
         List<comment> comment= videoFrameDao.getComment(sql);
         if (comment.size()==0)return null;
         return comment;
@@ -68,7 +96,9 @@ public class VideoFrameServiceImpl implements VideoFrameService{
 
     @Override
     public Boolean submitComment(comment comment) {
-        String sql = "insert into comments(videoid,cid,content,tocid,date) values("+comment.getVideoid()+","+comment.getCid()+",'"+comment.getContent()+"',"+comment.getTocid()+",now()) ";
+        String sql = "insert into comments(videoid,cid,content,tocommentid,date) values("+comment.getVideoid()+","+comment.getCid()+",'"+comment.getContent()+"',"+comment.getTocommentid()+",now()) ";
         return videoFrameDao.insertSql(sql);
     }
+
+
 }

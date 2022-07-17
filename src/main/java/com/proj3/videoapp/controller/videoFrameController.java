@@ -21,7 +21,7 @@ public class videoFrameController {
     public Boolean checkBeCollected(@RequestParam("videoid")String videoid,@RequestParam("cid") String cid){
         return videoFrameService.checkBeCollected(videoid,cid);
     }
-
+    //检索视频是否被点赞
     @RequestMapping("checkBeLike")
     public Boolean checkBeLike(@RequestParam("cid") String cid,@RequestParam("videoid") String videoid){
 
@@ -37,6 +37,24 @@ public class videoFrameController {
 
         return videoFrameService.deleteBeLike(cid,videoid);
     }
+    @RequestMapping("checkBeLikeComment")
+    public Boolean checkBeLikeComment(@RequestParam("cid")String cid,@RequestParam("commentid") String commentid){
+        return videoFrameService.checkBeLikeComment(cid,commentid);
+    }
+    @RequestMapping("addBeLikeComment")
+    public Boolean addBeLikeComment(@RequestParam("cid") String cid,@RequestParam("commentid") String commentid){
+
+        return videoFrameService.addBeLikeComment(cid,commentid);
+    }
+    @RequestMapping("delBeLikeComment")
+    public Boolean deleteBeLikeComment(@RequestParam("cid") String cid,@RequestParam("commentid") String commentid){
+
+        return videoFrameService.deleteBeLikeComment(cid,commentid);
+    }
+    @RequestMapping("delComment")
+    public Boolean deleteComment(@RequestParam("commentid") String commentid,@RequestParam("videoid") String videoid,@RequestParam("cid") String cid){
+        return videoFrameService.deleteComment(commentid,videoid,cid);
+    }
     @RequestMapping("shoucangVideo")
     public Boolean shoucangVideo(@RequestParam("videoid")String videoid,@RequestParam("folderid") String folderid){
         return videoFrameService.shoucangVideo(videoid,folderid);
@@ -47,16 +65,17 @@ public class videoFrameController {
     }
     //查找评论的评论or回复
     @RequestMapping("getCommentReply")
-    public List<comment> getCommentReply(@RequestParam("videoid") String videoid,@RequestParam("tocid") String tocid){
-        return videoFrameService.getCommentReply(videoid,tocid);
+    public List<comment> getCommentReply(@RequestParam("videoid") String videoid,@RequestParam("toCommentid") String toCommentid){
+        return videoFrameService.getCommentReply(videoid,toCommentid);
     }
     //保存评论
     @RequestMapping("submitComment")
     public Boolean submitComment(@RequestParam("content") String content,
                                  @RequestParam("videoid")String videoid,
-                                 @RequestParam("tocid")String tocid,
+                                 @RequestParam("tocommentid")String tocommentid,
                                  @RequestParam("cid")String cid){
-        comment comment = new comment(videoid,cid,content,tocid);
+
+        comment comment = new comment(videoid,cid,content,tocommentid);
 
         return videoFrameService.submitComment(comment);
 
