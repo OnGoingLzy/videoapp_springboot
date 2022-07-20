@@ -36,4 +36,16 @@ public class shoucangServiceImpl implements shoucangService{
         String sql = "delete from allbecollected where collectedvideoid = "+videoid + " and folderid = "+folderid;
         return shoucangDao.deleteSql(sql);
     }
+
+    @Override
+    public Boolean changeFolderLimit(String folderid, String limit) {
+        String sql = "update favorfolder set `limit` = "+ limit + " where ffolderid = "+folderid;
+        return shoucangDao.updateSql(sql);
+    }
+
+    @Override
+    public Boolean deleteFolder(String folderid) {
+        String sql = "delete from favorfolder where ffolderid = "+folderid;
+        return shoucangDao.deleteSql(sql);
+    }
 }

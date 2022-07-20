@@ -12,4 +12,8 @@ public interface shoucangService {
     public List<video> getFolderVideo(String folderid);
     public Boolean addFolder(favorFolder addFolder);
     public Boolean deleteBeShoucang(String videoid,String folderid);
+
+    Boolean changeFolderLimit(String folderid, String limit);
+
+    Boolean deleteFolder(String folderid);
 }

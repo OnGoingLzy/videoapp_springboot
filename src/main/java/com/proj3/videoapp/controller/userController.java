@@ -48,7 +48,6 @@ public class userController {
     public userMsg getmsgimg(@RequestBody String cid){
         cid = cid.replace("=","");
         userMsg sm = userDao.getUserAvatar(cid);
-//        System.out.println(sm);
         return sm;
     }
 }

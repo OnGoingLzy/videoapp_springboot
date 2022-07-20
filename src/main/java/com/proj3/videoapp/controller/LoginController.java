@@ -3,10 +3,8 @@ package com.proj3.videoapp.controller;
 import com.proj3.videoapp.Dao.UserDao;
 import com.proj3.videoapp.entity.user;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @CrossOrigin
 @RestController //只返回值所用
 public class LoginController {
@@ -24,4 +22,6 @@ public class LoginController {
         String sql = "insert into user(cname,email,cpwd) values('"+user.getCname()+"','"+user.getEmail()+"','"+user.getCpwd()+"')";
         return userDao.insertSql(sql);
     }
+
+
 }

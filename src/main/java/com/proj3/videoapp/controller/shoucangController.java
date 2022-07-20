@@ -45,5 +45,12 @@ public class shoucangController {
 
         return shoucangService.deleteBeShoucang(videoid,folderid);
     }
-
+    @RequestMapping("changeFolderLimit")
+    public Boolean changeFolderLimit(@RequestParam("folderid") String folderid,@RequestParam("limit") String limit){
+        return shoucangService.changeFolderLimit(folderid,limit);
+    }
+    @RequestMapping("deleteFolder")
+    public Boolean deleteFolder(@RequestParam("folderid") String folderid){
+        return shoucangService.deleteFolder(folderid);
+    }
 }

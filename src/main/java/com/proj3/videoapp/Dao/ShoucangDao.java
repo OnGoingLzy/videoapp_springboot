@@ -18,5 +18,7 @@ public interface ShoucangDao {
     public Boolean insertSql(@Param("sql")String sql);
     @Delete({"${sql}"})
     public Boolean deleteSql(@Param("sql") String sql)  ;
+    @Update({"${sql}"})
+    public Boolean updateSql(@Param("sql") String sql);
 
 }
